@@ -1,0 +1,50 @@
+{% extends 'template.html.twig' %}
+
+
+
+{% block body %}
+
+
+<div class="container" >
+
+    <h5><i class='fas fa-book'></i> Recherche des factures :</h5><br>
+     <p>Liste des facturier</p>
+    <div class="container">
+    {{ form_start(form) }}
+    {{ form_widget(form.Facturier) }}
+
+
+
+
+    <br>
+    <p>Choisir le type de recherche:</p>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="choix" id="choix" value="seule" onchange="HideandShow()">
+        <label class="form-check-label" for="choix1">
+            Une seule facture
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="choix" id="choix" value="liste" checked onchange="HideandShow()">
+        <label class="form-check-label" for="choix2">
+            La liste des factures
+        </label>
+    </div>
+        <br>
+        <div id="myref" style="display: none">
+            <p>La réference de facture a rechercher:</p>
+
+            <div>{{ form_widget(form.Ref,{attr:{'placeholder':"merci d'introduire La réference de facture a rechercher "}}) }}</div>
+        </div>
+         <br>
+        <div class="row" style="margin-bottom: 20px">
+            <div class="col-10"></div>
+            <div class="col-2"> <button type="Submit" class="btn btn-outline-success">Rechercher</button></div>
+        </div>
+    </div>
+</div>
+    {{ form_end(form) }}
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset("hide_show_ref.js") }}"></script>
+        {% endblock %}

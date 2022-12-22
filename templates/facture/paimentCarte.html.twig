@@ -1,0 +1,89 @@
+{% extends 'templatelogin.html.twig' %}
+{% block head %}
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="fr" datatype="plaintext" original="file.ext">
+
+        {% endblock %}
+
+
+{% block body %}
+
+       <div class="row justify-content-center" style="margin-top: 20px; margin-bottom: 20px">
+
+               <div class="card"  style="width: 60%;">
+                   <div class="card-body" >
+                       <div class="row"  >
+                           <div class="row justify-content-center">
+                               <h5 style="color: green"><i class="fa fa-money" aria-hidden="true"></i>
+                                   Paiment avec carte bancaire</h5></div>
+                           <br>
+                           <br>
+                           <div class="row" ><h6 style="font-weight: bold;">Les information du Facture:</h6></div>
+                           <br>
+                           <div class="row justify-content-center">
+                               <div class="card" style="width: 80%; border-color: red;margin-bottom: 15px ">
+                                   <div class="card-body" >
+                                       <div class="row  " style="font-size: medium">
+                                           <div class="col-8" style="font-weight: bold;"> Référence :</div>
+                                          <div class="col-4">{{facture.Ref}}</div>
+
+                                       </div>
+                                       <div class="row  " style="font-size: medium">
+                                           <div class="col-8" style="font-weight: bold;"> Montant :</div>
+                                           <div class="col-4">{{facture.montant}} DT</div>
+
+                                       </div>
+                                       <div class="row  " style="font-size: medium">
+                                           <div class="col-8" style="font-weight: bold;"> Client :</div>
+                                           <div class="col-4">{{user.nom}}  {{ user.prenom }}</div>
+
+                                       </div>
+                                       <div class="row  " style="font-size: medium">
+                                           <div class="col-8" style="font-weight: bold;"> Date de paiment :</div>
+                                           <div class="col-4">{{ "now"|date(" d/m/Y  H:i:s") }}</div>
+
+                                       </div>
+                                   </div>
+                               </div>
+                               <br><br>
+                           </div>
+                           <br><br>
+                           <div class="row" ><h6 style="font-weight: bold;">Paiment expire le :{{ facture.dateDePaiment|date("m/d/Y") }}:</h6></div>
+                           <div class="row justify-content-center">
+                               <div class="card" style="width: 80%; border-color: green;margin-bottom: 15px ">
+                                   <div class="card-body">
+                                    {{ form_start(form, {attr: {'novalidate-off': 'novalidate'}}) }}
+                                       {{ form_label(form.Email) }}
+                                       {{ form_widget(form.Email) }}
+                                       {{  form_errors(form.Email)}}
+                                       {{ form_label(form.NumeroCarte) }}
+                                       {{ form_widget(form.NumeroCarte) }}
+                                       {{ form_errors(form.NumeroCarte) }}
+                                       <p>Date de Carte</p>
+                                       {{ form_widget(form.Date_De_Carte) }}
+                                       {{ form_errors(form.Date_De_Carte) }}
+                                       {{ form_label(form.Cvv2) }}
+                                       {{ form_widget(form.Cvv2) }}
+                                       {{  form_errors(form.Cvv2)}}
+
+                                       <br>
+                                       <div class="col-4"></div>
+                                       <div class="col-8"> <button type="Submit" class="btn btn-outline-success">Payer facture</button></div>
+
+                                       <div class="row" style="margin-bottom: 20px">
+
+                                       </div>
+                                       {{ form_end(form) }}
+                                   </div>
+                               </div>
+                           </div>
+
+                   </div>
+               </div>
+           </div>
+
+
+   </div>
+{% endblock %}
+

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>{% block title %}paiment de facture {% endblock %}</title>
+    <link rel="shortcut icon" href="{{ asset("assets/img/icons8-bank-64.png") }}" type="images/png">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+     {% block head %} {% endblock %}
+
+    {% block stylesheets %}
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset("node_modules/font-awesome/css/font-awesome.css") }}">
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="{{ asset("assets/lib/animate/animate.css") }}" rel="stylesheet">
+    <link href="{{ asset("assets/lib/owlcarousel/assets/owl.carousel.min.css") }}" rel="stylesheet">
+    <link href="{{ asset("assets/lib/lightbox/css/lightbox.min.css") }}" rel="stylesheet">
+
+
+    <!-- Customized Bootstrap Stylesheet -->
+
+
+    <!-- Template Stylesheet -->
+    <link rel="stylesheet" href="{{ asset("assets/css/style.css") }}">
+    <link rel="stylesheet" href="{{ asset("node_modules/notyf/notyf.min.css") }}">
+        <link rel="stylesheet" href="{{ asset("assets/css/profile.css") }}">
+
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+    {%block javascripts %}
+      {{ encore_entry_script_tags('app') }}
+
+
+    {% endblock %}
+</head>
+
+
+<!-- Spinner Start -->
+<div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+    <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;"></div>
+</div>
+<!-- Spinner End -->
+
+
+<!-- Topbar Start -->
+<div class="container-fluid  text-light px-0 py-2"  id="topbar">
+    <div class="row gx-0 d-none d-lg-flex">
+        <div class="col-lg-7 px-5 text-start">
+            <div class="h-100 d-inline-flex align-items-center me-4">
+                <span class="fa fa-phone-alt me-2"></span>
+                <span>71831000</span>
+            </div>
+            <div class="h-100 d-inline-flex align-items-center">
+                <span class="far fa-envelope me-2"></span>
+                <span>info@example.com</span>
+            </div>
+        </div>
+        <div class="col-lg-5 px-5 text-end">
+            <div class="h-100 d-inline-flex align-items-center mx-n2">
+                <span>SUIVEZ-NOUS SUR :</span>
+                <a class="btn btn-link text-light" href="https://www.facebook.com/BanqueNationaleAgricole/?id_article=127"><i class="fab fa-facebook-f"></i></a>
+                <a class="btn btn-link text-light" href="https://twitter.com/BnaTunisie"><i class="fab fa-twitter"></i></a>
+                <a class="btn btn-link text-light" href="https://www.linkedin.com/company/bnabank"><i class="fab fa-linkedin-in"></i></a>
+                <a class="btn btn-link text-light" href="https://www.instagram.com/bna.bank/"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Topbar End -->
+</head>
+<body>
+<!-- Navbar Start -->
+<nav class="navbar navbar-expand-lg bg-blue navbar-light sticky-top p-0">
+    <a href="{{ path ('RechercheFacture')}}" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+        <img src="{{ asset("assets/img/icons8-bank-64.png") }}" alt="logo" style="height:55px ; width: 52px" >
+       <p style=" margin-left:10px; margin-top: 20px;">MONEY BANK </p>
+    </a>
+
+    <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav ms-auto p-4 p-lg-0">
+
+        </div>
+        <!-- Example single danger button -->
+        <div class="btn-group mr-5">
+            <button type="button" class="btn btn-outline-success dropdown-toggle " data-bs-toggle="dropdown" aria-expanded="false" style="margin-right: 20px">
+                <i class="fa fa-user" aria-hidden="true"></i><br> {{ app.user.userIdentifier }}
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{{ path("app_logout") }}">Déconnecter</a></li>
+                <li><a class="dropdown-item" href="{{ path("profile") }}">Profile</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- Navbar End -->
+<div class="container">
+    {% for message in app.session.flashBag.get("error") %}
+        <div class="alert alert-danger">
+            {{ message }}
+        </div>
+    {% endfor %}
+    {% for message in app.session.flashBag.get("success") %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+</div>
+
+
+
+{% block body %}
+
+{% endblock %}
+
+<!-- Back to Top -->
+
+
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{{ asset("assets/lib/wow/wow.min.js") }}"></script>
+<script src="{{ asset("assets/lib/easing/easing.min.js") }}"></script>
+<script src="{{ asset("assets/lib/waypoints/waypoints.min.js") }}"></script>
+<script src="{{ asset("assets/lib/owlcarousel/owl.carousel.min.js") }}"></script>
+<script src="{{ asset("assets/lib/counterup/counterup.min.js") }}"></script>
+<script src="{{ asset("assets/lib/parallax/parallax.min.js") }}"></script>
+<script src="{{ asset("assets/lib/isotope/isotope.pkgd.min.js") }}"></script>
+<script src="{{ asset("assets/lib/lightbox/js/lightbox.min.js") }}"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<!-- Template Javascript -->
+<script src="{{ asset('assets/js/main.js') }}"></script>
+{{ include('@MercurySeriesFlashy/flashy.html.twig') }}
+
+</body>
+
+
+</html>

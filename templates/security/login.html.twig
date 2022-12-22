@@ -1,0 +1,74 @@
+{% extends 'templatelogin.html.twig' %}
+
+
+
+{% block body %}
+<form method="post">
+    <div class="container">
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+        <div class="row">
+            <div class="col-9"> </div>
+            <div class="col-3">
+            {% if app.user %}
+
+                     {{ app.user.userIdentifier }}   <a href="{{ path('app_logout') }}"><i class="fa fa-sign-out" aria-hidden="true"> Déconnecter</i></a>
+
+            {% endif %}
+        </div></div>
+
+        <br>
+    <div class="row"></div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-7 col-lg-5">
+            <div class="wrap">
+               <div style="margin-top: 50px;margin-left: 170px;"> <img src="{{ asset("assets/img/icons8-bank-64.png") }}" alt="logo" style="height:75px ; width: 72px" >
+                   </div>
+                <div style="margin-top: 10px;margin-left: 150px;"><p >MONEY BANK </p></div>
+                <div class="login-wrap p-4 p-md-5">
+                    <div class="d-flex">
+                        <div class="w-100">
+                            <h3 class="mb-4">Connecter</h3>
+                        </div>
+                        <div class="w-100">
+
+                        </div>
+                    </div>
+                    <form action="#" class="signin-form">
+                        <div class="form-group mt-3">
+                            <label for="inputUsername">Identifiant du client </label>
+                            <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" autocomplete="username" required autofocus>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword">Mot de passe</label>
+                            <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+
+
+
+                        </div>
+                        <input type="hidden" name="_csrf_token"
+                               value="{{ csrf_token('authenticate') }}"
+                        >
+                        <div class="form-group">
+                            <button type="submit" class="form-control btn btn-primary rounded submit px-3">Connecter</button>
+                        </div>
+                        <div class="form-group d-md-flex">
+                            <div class="w-50 text-left">
+                                <label class="checkbox-wrap checkbox-primary mb-0">Mémoriser info
+                                    <input type="checkbox" checked>
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</form>
+{% endblock %}

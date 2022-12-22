@@ -1,0 +1,98 @@
+{% extends 'template.html.twig' %}
+
+{% block body %}
+
+    <br>
+    <div class="container">
+
+        <h5><i class="fa fa-list-ul" aria-hidden="true"></i>
+            Liste des factures</h5>
+
+        <br>
+        <table class="table">
+            <thead class="table-group-divider" style="color: green">
+            <tr>
+                <th scope="col">Ref</th>
+                <th scope="col">Facturier</th>
+                <th scope="col">Montant</th>
+                <th scope="col">Date_de_paiment</th>
+                <th scope="col">Etat</th>
+                <th scope="col">Operation</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for l in list %}
+                <tr>
+
+                    <td>{{ l.Ref  }}</td>
+                    <td>{{ l.facturier.nom }}</td>
+                    <td>{{ l.montant }} dt</td>
+                    <td>{{ l.Date_de_paiment|date("m/d/Y") }}</td>
+                    {% if l.etat =="1" %}
+                    <td style="">non payer</td>
+                        <td>
+
+                            <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="getRef({{ l.Ref }})"><i class="fa fa-money" aria-hidden="true"></i> payer</button>
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel" style="color: #1c7430">Voulez choisir le mode de paiment</h5>
+
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="choix" id="choix" value="carte">
+                                                <label class="form-check-label" for="choix1" >
+                                                    Carte Banquaire
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="choix" id="choix" value="virement" checked>
+                                                <label class="form-check-label" for="choix2">
+                                                    Virement Banquaire
+                                                </label>
+                                            </div>
+                                            <div class="modal-footer">
+
+                                                <button type="button" class="btn btn-outline-success" onclick="paiment()">Paiment</button>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="{{ path ('details.pdf', {'Ref' : l.Ref})}}" class="btn btn-outline-info" href="#">
+                                <i class="fa fa-info-circle" aria-hidden="true"></i> details
+                            </a>
+                        </td>
+                    {% else %}
+                        <td style="">payer</td>
+                        <td>
+
+                            <a href="{{ path ('details.pdf', {'Ref' : l.Ref})}}" class="btn btn-outline-info " href="#">
+                                <i class="fa fa-info-circle" aria-hidden="true"></i> details
+                            </a>
+                        </td>
+
+                    {% endif%}
+
+
+
+
+                </tr>
+
+
+            {% endfor %}
+
+
+            </tbody>
+        </table>
+    </div>
+    {% block javascripts %}
+        <script src="{{ asset("paiment.js") }}"></script>
+    {% endblock %}
+
+
+{% endblock %}
+

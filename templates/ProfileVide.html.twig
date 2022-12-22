@@ -1,0 +1,71 @@
+{% extends 'template.html.twig' %}
+{% block body %}
+    <div class="container ">
+        {{ form_start(form) }}
+        <div class="row-cols-md-auto d-flex justify-content-center">
+
+            <div class="col-md-7">
+
+                <div class="card p-3 py-4">
+
+                    <div class="text-center">
+                        <i class="fa fa-user fa-3x" style="color: #0f5132"></i>
+                      <h3>Profile</h3>
+                    </div>
+
+                    <div class="text-center mt-3">
+                        <span class="bg-secondary p-1 px-4 rounded text-white">Client</span>
+                        <h5 class="mt-2 mb-0">{{ user.prenom }} {{ user.nom }}</h5>
+                        <span>Nom_Utilisateur: {{ user.userIdentifier }}</span>
+
+                        <div class="px-4 mt-1">
+                            <h5>Détails:</h5>
+                            <div class="row justify-content-center " style="">
+                                <div class="col-2"> <p class="" style="color: #0f5132"> Email:</p></div>
+                                <div class="col-5">{{ user.email }}</div>
+                            </div>
+                            <div class="row justify-content-center " style="">
+                                <div class="col-2"> <p class="" style="color: #0f5132"> Mobile:</p></div>
+                                <div class="col-5">{{ user.mobile }}</div>
+                            </div>
+                            <div class="row justify-content-center " style="">
+                                <div class="col-2"> <p class="" style="color: #0f5132"> Adresse:</p></div>
+                                <div class="col-5">{{ user.adresse }}</div>
+                            </div>
+                            <div class="row justify-content-center " style="">
+                                <div class="col-2"> <p class="" style="color: #0f5132"> Code steg:</p></div>
+                                <div class="col-5">{{ form_widget(form.CodeSTEG,{attr:{'placeholder':"Entrer votre Code STEG"}})}}
+                                    {{ form_errors(form.CodeSTEG)}}    </div>
+                            </div>
+                            <div class="row justify-content-center " style="">
+                                <div class="col-2"> <p class="" style="color: #0f5132"> Code sonede:</p></div>
+                                <div class="col-5">{{ form_widget(form.CodeSONEDE,{attr:{'placeholder':"Entrer votre Code SONEDE"}})}}
+                                {{ form_errors(form.CodeSONEDE)}}
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+
+                        <div class="buttons">
+
+
+                        {{ form_widget(form.Ajouter) }}
+                        </div>
+
+
+                    </div>
+
+
+                    {{ form_end(form) }}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+{% endblock %}
